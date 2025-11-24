@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerbang Akhir: Verifikasi Kunci Final</title>
+    <style>
+        /* Variabel CSS untuk Dark Mode ala GitHub */
+        :root {
+            --gh-bg-primary: #0d1117;
+            --gh-bg-secondary: #161b22;
+            --gh-text-color: #c9d1d9;
+            --gh-border-color: #30363d;
+            --gh-btn-primary: #238636;
+            --gh-btn-hover: #2ea043;
+            --gh-input-bg: #010409;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            text-align: center;
+            padding-top: 50px;
+            background-color: var(--gh-bg-primary);
+            color: var(--gh-text-color);
+        }
+        .container {
+            background: var(--gh-bg-secondary);
+            padding: 40px 30px;
+            border-radius: 6px;
+            border: 1px solid var(--gh-border-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            max-width: 400px;
+            margin: auto;
+        }
+        h1 {
+            color: var(--gh-text-color);
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+        #passwordInput {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+            border: 1px solid var(--gh-border-color);
+            border-radius: 6px;
+            background-color: var(--gh-input-bg);
+            color: var(--gh-text-color);
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: var(--gh-btn-primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: var(--gh-btn-hover);
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔓 Gerbang Final: Pengungkapan Identitas</h1>
+        
+        <p>Anda telah mendekode pesan rahasia! Masukkan KATA SANDI FINAL yang Anda dapatkan dari Base64 untuk membuka halaman identitas.</p>
+
+        <input type="password" id="passwordInput" placeholder="Masukkan Kata Sandi Final" onkeydown="if(event.key === 'Enter') checkPassword()">
+        <button onclick="checkPassword()">BUKA RAHASIA</button>
+        
+        <p id="result"></p>
+
+    </div>
+
+    <script>
+        // KATA SANDI FINAL YANG DIDAPATKAN DARI DECODE BASE64
+        const CORRECT_PASSWORD = "MawarItuMerah"; 
+        
+        // NAMA FILE HALAMAN FINAL ANDA
+        const FINAL_PAGE_URL = "Final.html"; 
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value.trim();
+            const resultDiv = document.getElementById('result');
+
+            if (input === CORRECT_PASSWORD) {
+                resultDiv.style.backgroundColor = '#23863633';
+                resultDiv.style.color = '#2ea043';
+                resultDiv.innerHTML = "✅ Kunci Benar! Mengalihkan ke halaman pengungkapan...";
+                
+                // === REDIRECT KE HALAMAN FINAL ===
+                setTimeout(() => {
+                    window.location.href = FINAL_PAGE_URL;
+                }, 1500); 
+                
+            } else {
+                resultDiv.style.backgroundColor = '#d2121233';
+                resultDiv.style.color = '#f85149';
+                resultDiv.innerHTML = "❌ Kata Sandi Salah. Cek lagi hasil decode Base64 Anda!";
+            }
+        }
+    </script>
+</body>
+</html>
